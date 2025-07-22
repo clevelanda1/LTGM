@@ -2,6 +2,9 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { GraduationCap, Star, Award, Shield } from 'lucide-react';
 
+// Import the image
+import decoraImage from '../images/decora.png';
+
 const About = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -50,7 +53,7 @@ const About = () => {
               <div className="aspect-square bg-cream rounded-3xl p-8 shadow-elegant-lg border border-neutral-100">
                 <div className="w-full h-full bg-neutral-100 rounded-2xl overflow-hidden">
                   <img 
-                    src="./src/images/decora.png" 
+                    src={decoraImage} 
                     alt="Decora - Professional Lash Artist" 
                     className="w-full h-full object-cover rounded-2xl"
                   />
