@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Calendar, MapPin, GraduationCap } from 'lucide-react';
+import { Info, Calendar, MapPin, GraduationCap } from 'lucide-react';
 
 const Hero = () => {
   const scrollToServices = () => {
@@ -89,7 +89,7 @@ const Hero = () => {
             whileTap={{ scale: 0.95 }}
             className="bg-white text-deep-brown px-10 py-4 rounded-full font-medium text-lg shadow-elegant-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-3 border border-white/20"
           >
-            <Calendar size={20} />
+            {/*<Info size={20} />*/}
             <span>Get More Information</span>
           </motion.button>
           <motion.a
