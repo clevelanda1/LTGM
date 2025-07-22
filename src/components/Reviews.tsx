@@ -239,7 +239,7 @@ const Reviews = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="grid md:grid-cols-3 gap-6"
           >
-            {reviews.slice(0, 3).map((review, index) => (
+            {reviews.slice(0, 3).map((review, _index) => (
               <motion.div
                 key={review.id}
                 whileHover={{ y: -5 }}
@@ -261,10 +261,6 @@ const Reviews = () => {
                     src={review.image}
                     alt={review.name}
                     className="w-10 h-10 rounded-full object-cover"
-                    onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                      const target = e.target as HTMLImageElement;
-                      target.src = 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150';
-                    }}
                     onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
                       const target = e.target as HTMLImageElement;
                       target.src = 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150';

@@ -132,7 +132,7 @@ const Services = () => {
         </motion.div>
 
         <div className="overflow-x-auto pb-6 pt-2" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-          <style jsx>{`
+          <style>{`
             .overflow-x-auto::-webkit-scrollbar {
               display: none;
             }

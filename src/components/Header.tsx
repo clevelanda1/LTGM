@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X, Calendar } from 'lucide-react';
 
@@ -30,7 +30,7 @@ const Header = () => {
   return (
     <>
       {/* Shimmer CSS */}
-      <style jsx>{`
+      <style>{`
         .shimmer-text {
           position: relative;
           color: #B45309; /* Always visible lighter orange */
