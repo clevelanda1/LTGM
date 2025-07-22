@@ -26,7 +26,7 @@ const VanExperience = () => {
     },
     {
       id: 2,
-      title: 'Celebrate with Me',
+      title: 'Celebrate Inside',
       description: 'Beautiful exterior design of our mobile salon',
       url: decoraVanImage,
     },

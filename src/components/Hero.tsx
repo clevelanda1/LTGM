@@ -52,7 +52,7 @@ const Hero = () => {
           className="mb-12"
         >
           <motion.h1
-            className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-8 text-shadow tracking-tight"
+            className="text-5xl md:text-5xl lg:text-6xl font-light text-white mb-8 text-shadow tracking-tight"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
