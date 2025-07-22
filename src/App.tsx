@@ -14,8 +14,8 @@ function App() {
       <Header />
       <main>
         <Hero />
-        <Services />
         <VanExperience />
+        <Services />
         <About />
         <Reviews />
         <Booking />
