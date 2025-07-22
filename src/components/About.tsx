@@ -48,13 +48,12 @@ const About = () => {
               className="relative"
             >
               <div className="aspect-square bg-cream rounded-3xl p-8 shadow-elegant-lg border border-neutral-100">
-                <div className="w-full h-full bg-neutral-100 rounded-2xl flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-24 h-24 gradient-primary rounded-full mx-auto mb-6 flex items-center justify-center">
-                      <Users className="w-12 h-12 text-white" />
-                    </div>
-                    <p className="text-charcoal-grey font-light">Professional Portrait</p>
-                  </div>
+                <div className="w-full h-full rounded-2xl overflow-hidden">
+                  <img
+                    src="/decora.png"
+                    alt="Decora - Professional Lash Artist"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
             </motion.div>
