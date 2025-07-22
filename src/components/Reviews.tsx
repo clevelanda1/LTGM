@@ -287,7 +287,7 @@ const Reviews = () => {
             className="text-center mt-12"
           >
             <a
-              href="https://www.google.com/search?q=lashes+to+go+more+reviews"
+              href="https://www.google.com/maps/place/Lashes+To-go+and+More/@29.80711,-95.465351,10z/data=!4m17!1m8!3m7!1s0xa21ef2bf0397ed07:0xb227652f511965d4!2sLashes+To-go+and+More!8m2!3d29.80711!4d-95.465351!10e1!16s%2Fg%2F11kjq5fmzc!3m7!1s0xa21ef2bf0397ed07:0xb227652f511965d4!8m2!3d29.80711!4d-95.465351!9m1!1b1!16s%2Fg%2F11kjq5fmzc?entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 text-primary-orange hover:text-light-orange transition-colors duration-300 font-medium"

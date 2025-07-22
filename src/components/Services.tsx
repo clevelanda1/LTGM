@@ -163,7 +163,7 @@ const Services = () => {
                 )}
 
                 <div className="text-center mb-6">
-                  <div className="w-28 h-28 rounded-2xl overflow-hidden mx-auto mb-6 shadow-lg border-2 border-neutral-100">
+                  {/*<div className="w-28 h-28 rounded-2xl overflow-hidden mx-auto mb-6 shadow-lg border-2 border-neutral-100">
                     <img 
                       src={service.image}
                       alt={service.alt}
@@ -176,11 +176,11 @@ const Services = () => {
                           nextElement.style.display = 'flex';
                         }
                       }}
-                    />
+                    />*
                     <div className="w-full h-full gradient-primary rounded-2xl flex items-center justify-center" style={{display: 'none'}}>
                       <Eye className="w-10 h-10 text-white" />
                     </div>
-                  </div>
+                    </div>/}*/}
                   <h3 className="text-xl font-medium text-deep-brown mb-3 tracking-tight">
                     {service.name}
                   </h3>
@@ -268,7 +268,7 @@ const Services = () => {
                     whileTap={{ scale: 0.98 }}
                     className="w-full mt-6 bg-white text-primary-orange py-3 rounded-full font-medium hover:bg-neutral-100 transition-colors duration-300"
                   >
-                    Book Full Set Special
+                    Book Your Special
                   </motion.button>
                 </div>
               </div>
@@ -290,7 +290,7 @@ const Services = () => {
                     whileTap={{ scale: 0.98 }}
                     className="w-full mt-6 bg-white text-charcoal-grey py-3 rounded-full font-medium hover:bg-neutral-100 transition-colors duration-300"
                   >
-                    Book Cluster Special
+                    Book Your Special
                   </motion.button>
                 </div>
               </div>
