@@ -48,11 +48,11 @@ const About = () => {
               className="relative"
             >
               <div className="aspect-square bg-cream rounded-3xl p-8 shadow-elegant-lg border border-neutral-100">
-                <div className="w-full h-full rounded-2xl overflow-hidden">
-                  <img
-                    src="/decora.png"
-                    alt="Decora - Professional Lash Artist"
-                    className="w-full h-full object-cover"
+                <div className="w-full h-full bg-neutral-100 rounded-2xl overflow-hidden">
+                  <img 
+                    src="/src/images/decora.png" 
+                    alt="Decora - Professional Lash Artist" 
+                    className="w-full h-full object-cover rounded-2xl"
                   />
                 </div>
               </div>
