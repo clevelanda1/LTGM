@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Clock, Eye } from 'lucide-react';
+import { Clock, Eye, Star } from 'lucide-react';
 
 const Services = () => {
   const [ref, inView] = useInView({
@@ -44,7 +44,8 @@ const Services = () => {
       alt: 'Hybrid Lashes Example',
       features: ['Most Popular Choice', 'Natural "Pop" Effect', 'Best of Both Worlds'],
       note: 'Strategic combination of classic and volume techniques',
-      bookingUrl: 'https://lashesto-go.as.me/schedule/3423c0be/category/Full%2520Sets%2520To-Go!/appointment/16489095/calendar/4256055'
+      bookingUrl: 'https://lashesto-go.as.me/schedule/3423c0be/category/Full%2520Sets%2520To-Go!/appointment/16489095/calendar/4256055',
+      isPopular: true
     },
     {
       id: 4,
@@ -145,8 +146,22 @@ const Services = () => {
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 whileHover={{ y: -8 }}
-                className="bg-white rounded-3xl p-8 shadow-elegant hover:shadow-elegant-lg transition-all duration-300 border border-neutral-300 w-80 flex-shrink-0"
+                className={`bg-white rounded-3xl p-8 shadow-elegant hover:shadow-elegant-lg transition-all duration-300 w-80 flex-shrink-0 relative ${
+                  service.isPopular 
+                    ? 'border-2 border-primary-orange ring-2 ring-primary-orange/20' 
+                    : 'border border-neutral-300'
+                }`}
               >
+                {/* Popular Tag */}
+                {service.isPopular && (
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                    <div className="bg-primary-orange text-white px-4 py-2 rounded-full text-sm font-medium flex items-center space-x-1 shadow-lg">
+                      {/*<Star size={14} fill="currentColor" />*/}
+                      <span>Most Popular</span>
+                    </div>
+                  </div>
+                )}
+
                 <div className="text-center mb-6">
                   <div className="w-28 h-28 rounded-2xl overflow-hidden mx-auto mb-6 shadow-lg border-2 border-neutral-100">
                     <img 

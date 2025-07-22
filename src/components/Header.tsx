@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X, Calendar } from 'lucide-react';
+import { Menu, X, Calendar, Instagram } from 'lucide-react';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,7 +8,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 600);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -24,6 +24,11 @@ const Header = () => {
 
   const navigateToBooking = () => {
     window.open('https://LashesTo-Go.as.me/', '_blank');
+    setIsOpen(false);
+  };
+
+  const navigateToInstagram = () => {
+    window.open('https://www.instagram.com/lashes_togo/', '_blank');
     setIsOpen(false);
   };
 
@@ -143,48 +148,80 @@ const Header = () => {
       >
         <nav className="container-narrow py-6">
           <div className="flex items-center justify-between">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="text-2xl font-light tracking-wide shimmer-text"
-            >
-              LTGM
-            </motion.div>
+            <div className="flex items-center space-x-4">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="text-2xl font-light tracking-wide shimmer-text"
+              >
+                LTGM
+              </motion.div>
+              <motion.button
+                onClick={navigateToInstagram}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`transition-colors duration-300 p-2 ${
+                  isScrolled 
+                    ? 'text-charcoal-grey hover:text-primary-orange' 
+                    : 'text-white hover:text-white/80'
+                }`}
+              >
+                <Instagram size={20} />
+              </motion.button>
+            </div>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-12">
               <button
                 onClick={() => scrollToSection('about')}
-                className="text-charcoal-grey hover:text-primary-orange transition-colors duration-300 font-light"
+                className={`transition-colors duration-300 font-light ${
+                  isScrolled 
+                    ? 'text-charcoal-grey hover:text-primary-orange' 
+                    : 'text-charcoal-grey hover:text-white'
+                }`}
               >
                 About
               </button>
               <button
                 onClick={() => scrollToSection('services')}
-                className="text-charcoal-grey hover:text-primary-orange transition-colors duration-300 font-light"
+                className={`transition-colors duration-300 font-light ${
+                  isScrolled 
+                    ? 'text-charcoal-grey hover:text-primary-orange' 
+                    : 'text-charcoal-grey hover:text-white'
+                }`}
               >
                 Services
               </button>
               <button
                 onClick={() => scrollToSection('van')}
-                className="text-charcoal-grey hover:text-primary-orange transition-colors duration-300 font-light"
+                className={`transition-colors duration-300 font-light ${
+                  isScrolled 
+                    ? 'text-charcoal-grey hover:text-primary-orange' 
+                    : 'text-charcoal-grey hover:text-white'
+                }`}
               >
                 Experience
               </button>
               <button
                 onClick={() => scrollToSection('reviews')}
-                className="text-charcoal-grey hover:text-primary-orange transition-colors duration-300 font-light"
+                className={`transition-colors duration-300 font-light ${
+                  isScrolled 
+                    ? 'text-charcoal-grey hover:text-primary-orange' 
+                    : 'text-charcoal-grey hover:text-white'
+                }`}
               >
                 Reviews
               </button>
-              <motion.button
-                onClick={navigateToBooking}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center space-x-2 bg-primary-orange text-white px-6 py-3 rounded-full font-medium hover:bg-light-orange transition-colors duration-300 shadow-elegant shimmer-button relative"
-              >
-                <Calendar size={16} />
-                <span className="shimmer-button-text relative z-10">Book Now</span>
-              </motion.button>
+              <div className="flex items-center space-x-4">
+                <motion.button
+                  onClick={navigateToBooking}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center space-x-2 bg-primary-orange text-white px-6 py-3 rounded-full font-medium hover:bg-light-orange transition-colors duration-300 shadow-elegant shimmer-button relative"
+                >
+                  <Calendar size={16} />
+                  <span className="shimmer-button-text relative z-10">Book Now</span>
+                </motion.button>
+              </div>
             </div>
 
             {/* Mobile Menu Button */}
@@ -229,13 +266,21 @@ const Header = () => {
                 >
                   Reviews
                 </button>
-                <button
-                  onClick={navigateToBooking}
-                  className="flex items-center space-x-2 bg-primary-orange text-white px-6 py-3 rounded-full font-medium text-center justify-center shadow-elegant shimmer-button relative"
-                >
-                  <Calendar size={16} />
-                  <span className="shimmer-button-text relative z-10">Book Now</span>
-                </button>
+                <div className="flex items-center space-x-4">
+                  <button
+                    onClick={navigateToInstagram}
+                    className="text-charcoal-grey hover:text-primary-orange transition-colors duration-300 p-3 border border-neutral-300 rounded-full"
+                  >
+                    <Instagram size={20} />
+                  </button>
+                  <button
+                    onClick={navigateToBooking}
+                    className="flex items-center space-x-2 bg-primary-orange text-white px-6 py-3 rounded-full font-medium text-center justify-center shadow-elegant shimmer-button relative flex-1"
+                  >
+                    <Calendar size={16} />
+                    <span className="shimmer-button-text relative z-10">Book Now</span>
+                  </button>
+                </div>
               </div>
             </motion.div>
           )}
