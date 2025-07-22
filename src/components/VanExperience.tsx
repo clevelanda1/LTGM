@@ -57,7 +57,7 @@ const VanExperience = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-light text-deep-brown mb-6">
-            The Van Experience
+            The Mobile Experience
           </h2>
           <p className="text-xl text-charcoal-grey max-w-3xl mx-auto mb-4 font-light">
             Step inside our fully equipped mobile salon and experience luxury at your doorstep
