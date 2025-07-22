@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Clock, Sparkles, Eye, Calendar } from 'lucide-react';
+import { Clock, Eye } from 'lucide-react';
 
 const Services = () => {
   const [ref, inView] = useInView({
@@ -96,7 +96,7 @@ const Services = () => {
     }
   ];
 
-  const navigateToBooking = (url) => {
+  const navigateToBooking = (url: string) => {
     window.open(url, '_blank');
   };
 
@@ -153,9 +153,13 @@ const Services = () => {
                       src={service.image}
                       alt={service.alt}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                      onError={(e) => {
-                        e.target.style.display = 'none';
-                        e.target.nextElementSibling.style.display = 'flex';
+                      onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                        const target = e.target as HTMLImageElement;
+                        const nextElement = target.nextElementSibling as HTMLElement;
+                        target.style.display = 'none';
+                        if (nextElement) {
+                          nextElement.style.display = 'flex';
+                        }
                       }}
                     />
                     <div className="w-full h-full gradient-primary rounded-2xl flex items-center justify-center" style={{display: 'none'}}>

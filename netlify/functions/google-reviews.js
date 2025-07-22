@@ -58,7 +58,7 @@ exports.handler = async (event, context) => {
     }
 
     // Transform Google reviews to match our component structure
-    const transformedReviews = data.result.reviews?.map((review, index) => ({
+    const transformedReviews = data.result?.reviews?.map((review, index) => ({
       id: index + 1,
       name: review.author_name || 'Anonymous',
       location: 'Via Google',

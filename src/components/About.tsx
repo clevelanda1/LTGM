@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { GraduationCap, Heart, Star, Award, Users, Shield } from 'lucide-react';
+import { GraduationCap, Star, Award, Users, Shield } from 'lucide-react';
 
 const About = () => {
   const [ref, inView] = useInView({

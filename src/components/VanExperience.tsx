@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { ChevronLeft, ChevronRight, Car, Home, Sparkles } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Car, Home } from 'lucide-react';
 
 // Import your local images
 import decoraVanImage from '../images/decora-van.png';

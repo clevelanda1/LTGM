@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Star, Quote, Loader2 } from 'lucide-react';
+import { Review, GoogleReviewsResponse } from '../types';
 
 const Reviews = () => {
   const [ref, inView] = useInView({
@@ -10,12 +11,12 @@ const Reviews = () => {
   });
 
   const [currentReview, setCurrentReview] = useState(0);
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   // Fallback static reviews
-  const fallbackReviews = [
+  const fallbackReviews: Review[] = [
     {
       id: 1,
       name: 'Sarah M.',
@@ -66,7 +67,7 @@ const Reviews = () => {
         setError(false);
         
         const response = await fetch('/.netlify/functions/google-reviews');
-        const data = await response.json();
+        const data: GoogleReviewsResponse = await response.json();
         
         if (data.success && data.reviews && data.reviews.length > 0) {
           setReviews(data.reviews);
@@ -260,6 +261,14 @@ const Reviews = () => {
                     src={review.image}
                     alt={review.name}
                     className="w-10 h-10 rounded-full object-cover"
+                    onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150';
+                    }}
+                    onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150';
+                    }}
                   />
                   <div>
                     <h5 className="font-medium text-deep-brown text-sm">
