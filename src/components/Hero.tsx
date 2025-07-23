@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Info, Calendar, MapPin, GraduationCap } from 'lucide-react';
+import { Calendar, MapPin, GraduationCap } from 'lucide-react';
 
 const Hero = () => {
   const scrollToServices = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Clock, Eye } from 'lucide-react';
+import { Clock } from 'lucide-react';
 
 const Services = () => {
   const [ref, inView] = useInView({

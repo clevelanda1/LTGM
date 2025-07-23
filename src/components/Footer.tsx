@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, Instagram, Facebook, Heart } from 'lucide-react';
+import { Phone, Mail, MapPin, Instagram, Heart } from 'lucide-react';
 
 const Footer = () => {
   const scrollToSection = (sectionId: string) => {
