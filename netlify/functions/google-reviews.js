@@ -1,4 +1,30 @@
-exports.handler = async (event, context) => {
+import { Handler } from '@netlify/functions';
+
+interface GoogleReview {
+  author_name: string;
+  rating: number;
+  text: string;
+  profile_photo_url?: string;
+}
+
+interface GooglePlacesResponse {
+  status: string;
+  result?: {
+    reviews?: GoogleReview[];
+  };
+  error_message?: string;
+}
+
+interface TransformedReview {
+  id: number;
+  name: string;
+  location: string;
+  rating: number;
+  text: string;
+  image: string;
+}
+
+export const handler: Handler = async (event, context) => {
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
@@ -19,10 +45,10 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_LOCATION_ID } = process.env;
+    const { GOOGLE_API_KEY, GOOGLE_LOCATION_ID } = process.env;
 
-    if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET || !GOOGLE_LOCATION_ID) {
-      console.error('Missing OAuth environment variables');
+    if (!GOOGLE_API_KEY || !GOOGLE_LOCATION_ID) {
+      console.error('Missing environment variables');
       return {
         statusCode: 500,
         headers,
@@ -33,30 +59,12 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // For server-to-server, we'll use service account approach instead
-    // But first, let's try a simpler approach with just the API key but proper setup
-    
-    // Actually, let's stick with API key but ensure proper setup
-    const { GOOGLE_API_KEY } = process.env;
-    
-    if (!GOOGLE_API_KEY || !GOOGLE_LOCATION_ID) {
-      return {
-        statusCode: 500,
-        headers,
-        body: JSON.stringify({ 
-          error: 'Missing API configuration',
-          fallback: true 
-        }),
-      };
-    }
-
-    // Use the Places API with proper endpoint
     const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${GOOGLE_LOCATION_ID}&fields=name,reviews,rating&key=${GOOGLE_API_KEY}`;
 
     console.log('Making request to Google Places API');
 
     const response = await fetch(url);
-    const data = await response.json();
+    const data: GooglePlacesResponse = await response.json();
 
     console.log('Google API response:', data.status);
 
@@ -73,9 +81,9 @@ exports.handler = async (event, context) => {
       };
     }
 
-    const reviews = data.result?.reviews || [];
+    const reviews: GoogleReview[] = data.result?.reviews || [];
     
-    const transformedReviews = reviews.map((review, index) => ({
+    const transformedReviews: TransformedReview[] = reviews.map((review, index) => ({
       id: index + 1,
       name: review.author_name || 'Anonymous',
       location: 'Via Google',
@@ -102,13 +110,15 @@ exports.handler = async (event, context) => {
   } catch (error) {
     console.error('Error fetching Google reviews:', error);
     
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    
     return {
       statusCode: 500,
       headers,
       body: JSON.stringify({
         error: 'Failed to fetch reviews',
         fallback: true,
-        message: error.message,
+        message: errorMessage,
       }),
     };
   }
