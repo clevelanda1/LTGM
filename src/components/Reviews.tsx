@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Star, Quote, Loader2 } from 'lucide-react';
@@ -66,13 +66,20 @@ const Reviews = () => {
         setLoading(true);
         setError(false);
         
+        console.log('Fetching reviews from:', '/.netlify/functions/google-reviews');
+        
         const response = await fetch('/.netlify/functions/google-reviews');
+        console.log('Response status:', response.status);
+        console.log('Response ok:', response.ok);
+        
         const data: GoogleReviewsResponse = await response.json();
+        console.log('API Response:', data);
         
         if (data.success && data.reviews && data.reviews.length > 0) {
+          console.log('Using Google reviews:', data.reviews.length);
           setReviews(data.reviews);
         } else {
-          // Use fallback reviews if API returns no reviews
+          console.log('Using fallback reviews - API response:', data);
           setReviews(fallbackReviews);
           setError(true);
         }
@@ -86,7 +93,7 @@ const Reviews = () => {
     };
 
     fetchGoogleReviews();
-  }, []);
+  }, [fallbackReviews]);
 
   useEffect(() => {
     if (reviews.length > 0) {
@@ -261,7 +268,7 @@ const Reviews = () => {
                     src={review.image}
                     alt={review.name}
                     className="w-10 h-10 rounded-full object-cover"
-                    onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                    onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.src = 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150';
                     }}
