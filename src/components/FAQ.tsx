@@ -144,14 +144,14 @@ const FAQ = () => {
                 >
                   Call (346) 766-9245
                 </motion.a>
-                <motion.a
+                {/*<motion.a
                   href="mailto:info@lashestogohtx.com"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="border-2 border-white text-white px-6 py-3 rounded-full font-medium hover:bg-white hover:text-primary-orange transition-all duration-300"
                 >
                   Send Email
-                </motion.a>
+                  </motion.a>*/}
               </div>
             </div>
           </motion.div>

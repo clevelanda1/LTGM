@@ -1,5 +1,4 @@
 exports.handler = async (event, context) => {
-  // Set CORS headers
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
@@ -7,16 +6,10 @@ exports.handler = async (event, context) => {
     'Content-Type': 'application/json',
   };
 
-  // Handle preflight OPTIONS request
   if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 200,
-      headers,
-      body: '',
-    };
+    return { statusCode: 200, headers, body: '' };
   }
 
-  // Only allow GET requests
   if (event.httpMethod !== 'GET') {
     return {
       statusCode: 405,
@@ -26,11 +19,10 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    // Get environment variables
-    const { GOOGLE_API_KEY, GOOGLE_LOCATION_ID } = process.env;
+    const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_LOCATION_ID } = process.env;
 
-    if (!GOOGLE_API_KEY || !GOOGLE_LOCATION_ID) {
-      console.error('Missing environment variables');
+    if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET || !GOOGLE_LOCATION_ID) {
+      console.error('Missing OAuth environment variables');
       return {
         statusCode: 500,
         headers,
@@ -41,35 +33,60 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Construct Google Places API URL
-    const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${GOOGLE_LOCATION_ID}&fields=reviews&key=${GOOGLE_API_KEY}`;
-
-    // Fetch reviews from Google Places API
-    const response = await fetch(url);
+    // For server-to-server, we'll use service account approach instead
+    // But first, let's try a simpler approach with just the API key but proper setup
     
-    if (!response.ok) {
-      throw new Error(`Google API responded with status: ${response.status}`);
+    // Actually, let's stick with API key but ensure proper setup
+    const { GOOGLE_API_KEY } = process.env;
+    
+    if (!GOOGLE_API_KEY || !GOOGLE_LOCATION_ID) {
+      return {
+        statusCode: 500,
+        headers,
+        body: JSON.stringify({ 
+          error: 'Missing API configuration',
+          fallback: true 
+        }),
+      };
     }
 
+    // Use the Places API with proper endpoint
+    const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${GOOGLE_LOCATION_ID}&fields=name,reviews,rating&key=${GOOGLE_API_KEY}`;
+
+    console.log('Making request to Google Places API');
+
+    const response = await fetch(url);
     const data = await response.json();
 
+    console.log('Google API response:', data.status);
+
     if (data.status !== 'OK') {
-      throw new Error(`Google API error: ${data.status}`);
+      console.error('Google API error:', data.status, data.error_message);
+      return {
+        statusCode: 500,
+        headers,
+        body: JSON.stringify({
+          error: `Google API error: ${data.status}`,
+          message: data.error_message,
+          fallback: true
+        }),
+      };
     }
 
-    // Transform Google reviews to match our component structure
-    const transformedReviews = data.result?.reviews?.map((review, index) => ({
+    const reviews = data.result?.reviews || [];
+    
+    const transformedReviews = reviews.map((review, index) => ({
       id: index + 1,
       name: review.author_name || 'Anonymous',
       location: 'Via Google',
       rating: review.rating || 5,
       text: review.text || 'Great service!',
       image: review.profile_photo_url || `https://images.pexels.com/photos/${1239291 + index}/pexels-photo-${1239291 + index}.jpeg?auto=compress&cs=tinysrgb&w=150`,
-    })) || [];
+    }));
 
-    // Filter for 5-star reviews only and limit to 5 reviews
-    const fiveStarReviews = transformedReviews
-      .filter(review => review.rating === 5)
+    // Filter for high-rated reviews (4+ stars)
+    const goodReviews = transformedReviews
+      .filter(review => review.rating >= 4)
       .slice(0, 5);
 
     return {
@@ -77,8 +94,8 @@ exports.handler = async (event, context) => {
       headers,
       body: JSON.stringify({
         success: true,
-        reviews: fiveStarReviews,
-        count: fiveStarReviews.length,
+        reviews: goodReviews,
+        count: goodReviews.length,
       }),
     };
 

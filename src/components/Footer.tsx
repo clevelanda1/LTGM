@@ -84,7 +84,7 @@ const Footer = () => {
                 className="flex items-center space-x-3 text-white/80 hover:text-primary-orange transition-colors duration-300 font-light"
               >
                 <Mail size={18} />
-                <span>hello@lashestogo.com</span>
+                <span>info@lashestogohtx.com</span>
               </motion.a>
               <motion.div
                 whileHover={{ x: 5 }}
@@ -100,7 +100,7 @@ const Footer = () => {
               <h5 className="text-lg font-medium mb-4 text-primary-orange">Follow Us</h5>
               <div className="flex space-x-4">
                 <motion.a
-                  href="https://instagram.com/lashestogo"
+                  href="https://www.instagram.com/lashes_togo/"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -2 }}
@@ -108,7 +108,7 @@ const Footer = () => {
                 >
                   <Instagram size={20} />
                 </motion.a>
-                <motion.a
+                {/*<motion.a
                   href="https://facebook.com/lashestogo"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -116,7 +116,7 @@ const Footer = () => {
                   className="w-10 h-10 bg-primary-orange rounded-full flex items-center justify-center hover:bg-light-orange transition-colors duration-300"
                 >
                   <Facebook size={20} />
-                </motion.a>
+  </motion.a>*/}
               </div>
             </div>
           </div>

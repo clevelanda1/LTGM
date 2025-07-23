@@ -132,7 +132,7 @@ const Services = () => {
           </p>
         </motion.div>
 
-        <div className="overflow-x-auto pb-6 pt-2" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <div className="overflow-x-auto pb-6 pt-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           <style>{`
             .overflow-x-auto::-webkit-scrollbar {
               display: none;
@@ -155,7 +155,7 @@ const Services = () => {
                 {/* Popular Tag */}
                 {service.isPopular && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <div className="bg-primary-orange text-white px-4 py-2 rounded-full text-sm font-medium flex items-center space-x-1 shadow-lg">
+                    <div className="bg-primary-orange text-white px-4 py-2 rounded-full text-sm font-medium flex items-center space-x-1 shadow-lg -mt-2">
                       {/*<Star size={14} fill="currentColor" />*/}
                       <span>Most Popular</span>
                     </div>
