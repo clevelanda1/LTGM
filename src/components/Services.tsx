@@ -155,31 +155,12 @@ const Services = () => {
                 {service.isPopular && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
                     <div className="bg-primary-orange text-white px-4 py-2 rounded-full text-sm font-medium flex items-center space-x-1 shadow-lg -mt-2">
-                      {/*<Star size={14} fill="currentColor" />*/}
                       <span>Most Popular</span>
                     </div>
                   </div>
                 )}
 
                 <div className="text-center mb-6">
-                  {/*<div className="w-28 h-28 rounded-2xl overflow-hidden mx-auto mb-6 shadow-lg border-2 border-neutral-100">
-                    <img 
-                      src={service.image}
-                      alt={service.alt}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                      onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                        const target = e.target as HTMLImageElement;
-                        const nextElement = target.nextElementSibling as HTMLElement;
-                        target.style.display = 'none';
-                        if (nextElement) {
-                          nextElement.style.display = 'flex';
-                        }
-                      }}
-                    />*
-                    <div className="w-full h-full gradient-primary rounded-2xl flex items-center justify-center" style={{display: 'none'}}>
-                      <Eye className="w-10 h-10 text-white" />
-                    </div>
-                    </div>/}*/}
                   <h3 className="text-xl font-medium text-deep-brown mb-3 tracking-tight">
                     {service.name}
                   </h3>
