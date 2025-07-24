@@ -52,12 +52,12 @@ const Hero = () => {
           className="mb-12"
         >
           <motion.h1
-            className="text-5xl md:text-5xl lg:text-6xl font-light text-white mb-8 text-shadow tracking-tight"
+            className="text-6xl md:text-6xl lg:text-7xl font-light text-white mb-8 text-shadow tracking-tight"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            Lashes So Neat. Beauty Complete
+            Lashes To-go & More!
           </motion.h1>
           <motion.p
             className="text-2xl md:text-3xl text-white/95 mb-6 font-light tracking-wide"
