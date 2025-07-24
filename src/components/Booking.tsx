@@ -192,7 +192,7 @@ const Booking = () => {
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-primary-orange rounded-full mt-2"></div>
                     <p className="text-charcoal-grey">
-                      <strong>Cashless payments</strong> - All major credit cards accepted
+                      <strong>Cashless payments</strong> - All major credit cards accepted including Zelle and Paypal
                     </p>
                   </div>
                   <div className="flex items-start space-x-3">
