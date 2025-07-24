@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Star, Quote, Loader2 } from 'lucide-react';
@@ -66,20 +66,13 @@ const Reviews = () => {
         setLoading(true);
         setError(false);
         
-        console.log('Fetching reviews from:', '/.netlify/functions/google-reviews');
-        
         const response = await fetch('/.netlify/functions/google-reviews');
-        console.log('Response status:', response.status);
-        console.log('Response ok:', response.ok);
-        
         const data: GoogleReviewsResponse = await response.json();
-        console.log('API Response:', data);
         
         if (data.success && data.reviews && data.reviews.length > 0) {
-          console.log('Using Google reviews:', data.reviews.length);
           setReviews(data.reviews);
         } else {
-          console.log('Using fallback reviews - API response:', data);
+          // Use fallback reviews if API returns no reviews
           setReviews(fallbackReviews);
           setError(true);
         }
@@ -93,7 +86,7 @@ const Reviews = () => {
     };
 
     fetchGoogleReviews();
-  }, [fallbackReviews]);
+  }, []);
 
   useEffect(() => {
     if (reviews.length > 0) {
@@ -268,7 +261,7 @@ const Reviews = () => {
                     src={review.image}
                     alt={review.name}
                     className="w-10 h-10 rounded-full object-cover"
-                    onError={(e) => {
+                    onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
                       const target = e.target as HTMLImageElement;
                       target.src = 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150';
                     }}
@@ -294,7 +287,7 @@ const Reviews = () => {
             className="text-center mt-12"
           >
             <a
-              href="https://www.google.com/maps/place/Lashes+To-go+and+More/@29.80711,-95.465351,10z/data=!4m17!1m8!3m7!1s0xa21ef2bf0397ed07:0xb227652f511965d4!2sLashes+To-go+and+More!8m2!3d29.80711!4d-95.465351!10e1!16s%2Fg%2F11kjq5fmzc!3m7!1s0xa21ef2bf0397ed07:0xb227652f511965d4!8m2!3d29.80711!4d-95.465351!9m1!1b1!16s%2Fg%2F11kjq5fmzc?entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D"
+              href="https://www.google.com/maps/place/Lashes+To-go+and+More/@29.8072969,-95.7950158,10z/data=!4m18!1m9!3m8!1s0xa21ef2bf0397ed07:0xb227652f511965d4!2sLashes+To-go+and+More!8m2!3d29.80711!4d-95.465351!9m1!1b1!16s%2Fg%2F11kjq5fmzc!3m7!1s0xa21ef2bf0397ed07:0xb227652f511965d4!8m2!3d29.80711!4d-95.465351!9m1!1b1!16s%2Fg%2F11kjq5fmzc?entry=ttu&g_ep=EgoyMDI1MDcyMS4wIKXMDSoASAFQAw%3D%3D"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 text-primary-orange hover:text-light-orange transition-colors duration-300 font-medium"
