@@ -60,10 +60,10 @@ const VanExperience = () => {
             The Mobile Experience
           </h2>
           <p className="text-xl text-charcoal-grey max-w-3xl mx-auto mb-4 font-light">
-            Step inside our fully equipped mobile salon and experience luxury at your doorstep
+            Step inside our fully equipped mobile salon and experience convience at your doorstep
           </p>
           <p className="text-2xl font-light text-primary-orange italic">
-            "We're Coming!"
+            "Guess What? We're Coming!"
           </p>
         </motion.div>
 
