@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Star, Quote, Loader2 } from 'lucide-react';
@@ -86,7 +86,7 @@ const Reviews = () => {
       name: 'MrsA',
       location: 'Houston TX',
       rating: 5,
-      text: 'Lashes to Go was a lifesaver! I was working on a hospital implementation in Houston and couldn’t find time to visit a local lash salon. Then I found Lashes to Go Mobile! I highly recommend her services. Her mobile setup is clean, sanitary, comfortable, and very professional!',
+      text: 'Lashes to Go was a lifesaver! I was working on a hospital implementation in Houston and couldn\'t find time to visit a local lash salon. Then I found Lashes to Go Mobile! I highly recommend her services. Her mobile setup is clean, sanitary, comfortable, and very professional!',
       image: '', // Removed to show fallback
     },
     {
@@ -102,7 +102,7 @@ const Reviews = () => {
       name: 'DeAndrea Barras',
       location: 'Houston, TX',
       rating: 5,
-      text: 'This was my first time ever getting my lashes done, let alone in a mobile setting. I was nervous about it and it was spur of the moment because she was near my home & was in the middle of another appointment. I wasn’t even looking to get my lashes done, I was just being nosey lol, & even at the end of Decora’s day she was still extremely courteous & informative. She was also very accommodating during my lash appointment. Her mobile lash shop was really clean & comfortable. She was very gentle & eased all my worries. My lashes are still going strong & I made sure my next appointment was booked before I left. I’m sold!',
+      text: 'This was my first time ever getting my lashes done, let alone in a mobile setting. I was nervous about it and it was spur of the moment because she was near my home & was in the middle of another appointment. I wasn\'t even looking to get my lashes done, I was just being nosy lol, & even at the end of Decora\'s day she was still extremely courteous & informative. She was also very accommodating during my lash appointment. Her mobile lash shop was really clean & comfortable. She was very gentle & eased all my worries. My lashes are still going strong & I made sure my next appointment was booked before I left. I\'m sold!',
       image: '', // Removed to show fallback
     },
     {
