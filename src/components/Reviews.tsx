@@ -15,6 +15,7 @@ const Reviews = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [imageErrors, setImageErrors] = useState<{ [key: number]: boolean }>({});
+  const [isPaused, setIsPaused] = useState(false);
 
   // Generate consistent color for each person based on their name
   const getAvatarColor = (name: string) => {
@@ -145,14 +146,14 @@ const Reviews = () => {
   }, []);
 
   useEffect(() => {
-    if (reviews.length > 0) {
+    if (reviews.length > 0 && !isPaused) {
       const timer = setInterval(() => {
         setCurrentReview((prev) => (prev + 1) % reviews.length);
       }, 5000);
 
       return () => clearInterval(timer);
     }
-  }, [reviews.length]);
+  }, [reviews.length, isPaused]);
 
   const nextReview = () => {
     setCurrentReview((prev) => (prev + 1) % reviews.length);
@@ -204,6 +205,10 @@ const Reviews = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative mb-12"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            onTouchStart={() => setIsPaused(true)}
+            onTouchEnd={() => setIsPaused(false)}
           >
             <div className="bg-cream rounded-3xl p-8 md:p-12 shadow-elegant relative overflow-hidden">
               {/* Background Quote Icon */}
@@ -256,6 +261,8 @@ const Reviews = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex justify-center items-center space-x-4 mb-12"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
           >
             <button
               onClick={prevReview}
