@@ -14,48 +14,104 @@ const Reviews = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [imageErrors, setImageErrors] = useState<{ [key: number]: boolean }>({});
 
-  // Fallback static reviews
+  // Generate consistent color for each person based on their name
+  const getAvatarColor = (name: string) => {
+    const colors = [
+      'bg-gradient-to-br from-pink-400 to-pink-600',
+      'bg-gradient-to-br from-purple-400 to-purple-600',
+      'bg-gradient-to-br from-blue-400 to-blue-600',
+      'bg-gradient-to-br from-green-400 to-green-600',
+      'bg-gradient-to-br from-yellow-400 to-yellow-600',
+      'bg-gradient-to-br from-red-400 to-red-600',
+      'bg-gradient-to-br from-indigo-400 to-indigo-600',
+      'bg-gradient-to-br from-teal-400 to-teal-600',
+    ];
+    
+    const index = name.charCodeAt(0) % colors.length;
+    return colors[index];
+  };
+
+  // Get first letter of name
+  const getInitials = (name: string) => {
+    return name.charAt(0).toUpperCase();
+  };
+
+  // Handle image error
+  const handleImageError = (reviewId: number) => {
+    setImageErrors(prev => ({ ...prev, [reviewId]: true }));
+  };
+
+  // Avatar component that shows image or fallback
+  const Avatar = ({ review, size = 'large' }: { review: Review; size?: 'small' | 'large' }) => {
+    const sizeClasses = size === 'large' ? 'w-16 h-16' : 'w-10 h-10';
+    const textSizeClasses = size === 'large' ? 'text-xl' : 'text-sm';
+    const borderClasses = size === 'large' ? 'border-4 border-white shadow-lg' : '';
+    
+    if (review.image && !imageErrors[review.id]) {
+      return (
+        <img
+          src={review.image}
+          alt={review.name}
+          className={`${sizeClasses} rounded-full object-cover ${borderClasses}`}
+          onError={() => handleImageError(review.id)}
+        />
+      );
+    }
+    
+    return (
+      <div 
+        className={`${sizeClasses} rounded-full ${getAvatarColor(review.name)} flex items-center justify-center ${borderClasses}`}
+      >
+        <span className={`${textSizeClasses} font-semibold text-white`}>
+          {getInitials(review.name)}
+        </span>
+      </div>
+    );
+  };
+
+  // Fallback static reviews (remove image URLs to test fallback)
   const fallbackReviews: Review[] = [
     {
       id: 1,
-      name: 'Sarah M.',
+      name: 'Danika Ramirez',
       location: 'Houston, TX',
       rating: 5,
-      text: 'Decora is amazing! The van showed up right on time and the experience was so luxurious. My lashes look incredible and lasted for weeks. Will definitely book again!',
-      image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150',
+      text: 'I had an amazing experience! It was my first time trying a mobile lash salon, and the convenience was incredible - no lengthy travel needed! Plus, I\'m absolutely loving my lashes!',
+      image: '', // Removed to show fallback
     },
     {
       id: 2,
-      name: 'Jessica L.',
-      location: 'Katy, TX',
+      name: 'MrsA',
+      location: 'Houston TX',
       rating: 5,
-      text: 'I love the convenience! No more driving across town for lash appointments. The van is beautiful inside and Decora is so professional. Best lashes I\'ve ever had!',
-      image: 'https://images.pexels.com/photos/1542085/pexels-photo-1542085.jpeg?auto=compress&cs=tinysrgb&w=150',
+      text: 'Lashes to Go was a lifesaver! I was working on a hospital implementation in Houston and couldn’t find time to visit a local lash salon. Then I found Lashes to Go Mobile! I highly recommend her services. Her mobile setup is clean, sanitary, comfortable, and very professional!',
+      image: '', // Removed to show fallback
     },
     {
       id: 3,
-      name: 'Amanda R.',
-      location: 'Sugar Land, TX',
+      name: 'Clarissa Minero',
+      location: 'Houston, TX',
       rating: 5,
-      text: 'The hybrid lashes are perfect! Decora listened to exactly what I wanted and delivered beyond my expectations. The mobile concept is genius - so convenient for busy moms!',
-      image: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150',
+      text: 'I loved this mobile lash, so convenient and it does not even feel you are in a vehicle. Decora was so sweet and walking me through the process , making sure I was comfortable and doing okay. She made sure I was happy with my lashes and I definitely was. So glad I found this!',
+      image: '',
     },
     {
       id: 4,
-      name: 'Maria G.',
-      location: 'Pearland, TX',
+      name: 'DeAndrea Barras',
+      location: 'Houston, TX',
       rating: 5,
-      text: 'Absolutely love my volume lashes! Decora is so talented and the van experience feels like a high-end spa. Perfect for special events or just treating yourself!',
-      image: 'https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&w=150',
+      text: 'This was my first time ever getting my lashes done, let alone in a mobile setting. I was nervous about it and it was spur of the moment because she was near my home & was in the middle of another appointment. I wasn’t even looking to get my lashes done, I was just being nosey lol, & even at the end of Decora’s day she was still extremely courteous & informative. She was also very accommodating during my lash appointment. Her mobile lash shop was really clean & comfortable. She was very gentle & eased all my worries. My lashes are still going strong & I made sure my next appointment was booked before I left. I’m sold!',
+      image: '', // Removed to show fallback
     },
     {
       id: 5,
-      name: 'Rachel K.',
-      location: 'The Woodlands, TX',
+      name: 'Danielle Head',
+      location: 'Houston, TX',
       rating: 5,
-      text: 'Best decision ever! The classic lashes give me the perfect natural look I wanted. Decora is so sweet and professional. The van is gorgeous inside!',
-      image: 'https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg?auto=compress&cs=tinysrgb&w=150',
+      text: 'Lashes To-go and More was an amazing experience! She was punctual, offered great customer service, and was knowledgeable about her craft! As you walked into the mobile facility, it was clean and welcoming. I felt like I was inside of a lash spa. The lash technician was very personable and asked questions about my lash journey, in addition to thoroughly explaining the difference between the type of lash services they offered. I felt very comfortable with my lashes in her hands lol. I highly recommend Lashes To-go. I give it a 10 out it 10, and I am looking forward to my fill-in!',
+      image: '',
     },
   ];
 
@@ -179,11 +235,7 @@ const Reviews = () => {
 
                   {/* Client Info */}
                   <div className="flex items-center justify-center space-x-4">
-                    <img
-                      src={reviews[currentReview].image}
-                      alt={reviews[currentReview].name}
-                      className="w-16 h-16 rounded-full object-cover border-4 border-white shadow-lg"
-                    />
+                    <Avatar review={reviews[currentReview]} size="large" />
                     <div className="text-left">
                       <h4 className="font-medium text-deep-brown text-lg">
                         {reviews[currentReview].name}
@@ -257,15 +309,7 @@ const Reviews = () => {
                   "{review.text.slice(0, 100)}..."
                 </p>
                 <div className="flex items-center space-x-3">
-                  <img
-                    src={review.image}
-                    alt={review.name}
-                    className="w-10 h-10 rounded-full object-cover"
-                    onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                      const target = e.target as HTMLImageElement;
-                      target.src = 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150';
-                    }}
-                  />
+                  <Avatar review={review} size="small" />
                   <div>
                     <h5 className="font-medium text-deep-brown text-sm">
                       {review.name}
