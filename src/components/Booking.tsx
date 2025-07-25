@@ -22,7 +22,7 @@ const Booking = () => {
             Book Your Appointment
           </h2>
           <p className="text-xl text-charcoal-grey max-w-3xl mx-auto font-light">
-            Schedule your mobile lash appointment and experience luxury at your doorstep
+            Schedule your mobile lash appointment and experience LTGM at your doorstep
           </p>
         </motion.div>
 

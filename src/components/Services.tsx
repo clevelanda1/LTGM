@@ -248,7 +248,7 @@ const Services = () => {
                     whileTap={{ scale: 0.98 }}
                     className="w-full mt-6 bg-white text-primary-orange py-3 rounded-full font-medium hover:bg-neutral-100 transition-colors duration-300"
                   >
-                    Book Your Special
+                    Book Today
                   </motion.button>
                 </div>
               </div>
@@ -270,7 +270,7 @@ const Services = () => {
                     whileTap={{ scale: 0.98 }}
                     className="w-full mt-6 bg-white text-charcoal-grey py-3 rounded-full font-medium hover:bg-neutral-100 transition-colors duration-300"
                   >
-                    Book Your Special
+                    Book Today
                   </motion.button>
                 </div>
               </div>

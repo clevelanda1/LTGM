@@ -85,7 +85,7 @@ const Reviews = () => {
     {
       id: 2,
       name: 'MrsA',
-      location: 'Houston TX',
+      location: 'Houston, TX',
       rating: 5,
       text: 'Lashes to Go was a lifesaver! I was working on a hospital implementation in Houston and couldn\'t find time to visit a local lash salon. Then I found Lashes to Go Mobile! I highly recommend her services. Her mobile setup is clean, sanitary, comfortable, and very professional!',
       image: '', // Removed to show fallback

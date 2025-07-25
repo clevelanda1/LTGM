@@ -21,13 +21,13 @@ const VanExperience = () => {
     {
       id: 1,
       title: 'Outside the Salon',
-      description: 'Complete exterior view of our mobile salon experience',
+      description: 'Beautiful exterior design of our mobile salon',
       url: outsideVanImage,
     },
     {
       id: 2,
-      title: 'Celebrate Inside',
-      description: 'Beautiful exterior design of our mobile salon',
+      title: 'Celebrate With Me',
+      description: 'Introducing Lashes To-go & More',
       url: decoraVanImage,
     },
     {

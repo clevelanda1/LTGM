@@ -2,8 +2,8 @@ import { motion } from 'framer-motion';
 import { Calendar, MapPin, GraduationCap } from 'lucide-react';
 
 const Hero = () => {
-  const scrollToServices = () => {
-    const element = document.getElementById('services');
+  const scrollToBooking = () => {
+    const element = document.getElementById('booking');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
@@ -84,7 +84,7 @@ const Hero = () => {
           className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
         >
           <motion.button
-            onClick={scrollToServices}
+            onClick={scrollToBooking}
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
             className="bg-white text-deep-brown px-10 py-4 rounded-full font-medium text-lg shadow-elegant-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-3 border border-white/20"
