@@ -80,7 +80,7 @@ const Services = () => {
       alt: 'Lash Refill Service',
       features: ['1 Week Refill - $60', '2-3 Week Refill - $120', '45% Lashes Required'],
       note: 'Must have 45% of lashes remaining. Less than 45% will be charged accordingly',
-      bookingUrl: 'https://lashesto-go.as.me/schedule/3423c0be/category/Refills%2520To-Go!'
+      bookingUrl: 'https://lashesto-go.as.me/schedule/3423c0be/category/Refill%2520Appointments'
     },
     {
       id: 7,
