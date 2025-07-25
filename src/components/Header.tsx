@@ -155,11 +155,12 @@ const Header = () => {
               >
                 LTGM
               </motion.div>
+              {/* Instagram button - hidden on mobile, visible on desktop */}
               <motion.button
                 onClick={navigateToInstagram}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`transition-colors duration-300 p-2 ${
+                className={`hidden md:block transition-colors duration-300 p-2 ${
                   isScrolled 
                     ? 'text-charcoal-grey hover:text-primary-orange' 
                     : 'text-white hover:text-white/80'
