@@ -90,7 +90,7 @@ const Booking = () => {
 
               {/* Gift Cards */}
               <div className="bg-gradient-to-br from-charcoal-grey to-deep-brown rounded-2xl p-8 text-white">
-                <div className="flex items-center space-x-4 mb-6">
+                <div className="flex items-center justify-center space-x-4 mb-6">
                   {/*<Gift className="w-8 h-8" />*/}
                   <h3 className="text-2xl font-medium">Gift Cards Available</h3>
                 </div>
