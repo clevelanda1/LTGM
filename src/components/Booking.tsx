@@ -8,6 +8,14 @@ const Booking = () => {
     threshold: 0.1,
   });
 
+  const navigateToFullSetGiftCard = () => {
+    window.open('https://app.acuityscheduling.com/catalog.php?owner=20233174&action=addCart&clear=1&id=2017158', '_blank');
+  };
+
+  const navigateToClusterGiftCard = () => {
+    window.open('https://app.acuityscheduling.com/catalog.php?owner=20233174&action=addCart&clear=1&id=2017161', '_blank');
+  };
+
   return (
     <section id="booking" className="py-20 bg-cream">
       <div className="container mx-auto px-4">
@@ -82,20 +90,56 @@ const Booking = () => {
 
               {/* Gift Cards */}
               <div className="bg-gradient-to-br from-charcoal-grey to-deep-brown rounded-2xl p-8 text-white">
-                <div className="flex items-center space-x-4 mb-4">
-                  <Gift className="w-8 h-8" />
+                <div className="flex items-center space-x-4 mb-6">
+                  {/*<Gift className="w-8 h-8" />*/}
                   <h3 className="text-2xl font-medium">Gift Cards Available</h3>
                 </div>
-                <p className="mb-6 opacity-90">
+                <p className="mb-8 opacity-90 text-center">
                   Give the gift of luxury lashes! Perfect for birthdays, holidays, or any special occasion.
                 </p>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-white text-primary-orange px-6 py-3 rounded-full font-medium hover:bg-warm-white transition-colors duration-300"
-                >
-                  Purchase Gift Card
-                </motion.button>
+                
+                {/* Gift Card Options */}
+                <div className="grid md:grid-cols-2 gap-4">
+                  {/* Full Set Gift Card */}
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 text-center"
+                  >
+                    <div className="w-12 h-12 bg-gradient-to-r from-primary-orange to-light-orange rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Gift className="w-6 h-6 text-white" />
+                    </div>
+                    <h4 className="text-lg font-medium mb-2">Full Set Experience</h4>
+                    <p className="text-sm opacity-80 mb-4">Complete lash extension experience with professional application</p>
+                    <motion.button
+                      onClick={navigateToFullSetGiftCard}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="w-full bg-white text-primary-orange py-2 px-4 rounded-full font-medium hover:bg-warm-white transition-colors duration-300"
+                    >
+                      Purchase 
+                    </motion.button>
+                  </motion.div>
+
+                  {/* Cluster Gift Card */}
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 text-center"
+                  >
+                    <div className="w-12 h-12 bg-gradient-to-r from-light-orange to-primary-orange rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Gift className="w-6 h-6 text-white" />
+                    </div>
+                    <h4 className="text-lg font-medium mb-2">Cluster Experience</h4>
+                    <p className="text-sm opacity-80 mb-4">Beautiful cluster lashes perfect for events and special occasions</p>
+                    <motion.button
+                      onClick={navigateToClusterGiftCard}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="w-full bg-white text-primary-orange py-2 px-4 rounded-full font-medium hover:bg-warm-white transition-colors duration-300"
+                    >
+                      Purchase
+                    </motion.button>
+                  </motion.div>
+                </div>
               </div>
             </motion.div>
 
